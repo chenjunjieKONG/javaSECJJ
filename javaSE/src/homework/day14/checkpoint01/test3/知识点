@@ -1,0 +1,5 @@
+请说出四种运行时异常
+ArithmeticException：算术异常
+ArrayIndexOutOfBoundsException :数组索引越界异常
+NullPointerException：空指针异常
+ClassNotFoundException：类不存在异常

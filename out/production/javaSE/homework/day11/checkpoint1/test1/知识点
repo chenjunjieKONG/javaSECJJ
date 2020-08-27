@@ -1,0 +1,14 @@
+1.请说出基本数据类型对应的八个包装类分别是什么？
+byte-Byte   int-Integer     double-Double       char-character
+long-Long   float-Float     boolean-Boolean     short-Short
+
+2.请说出如何把字符串转换为对应的基本数据类型，有什么主意？
+除了Character类之外，其他所有包装类都具有parseXxx(Xxx是基本数据类型)静态方法可以将字符串参数转换为对应的基本类型：
+
+byte    parseByte(String s)     ：将字符串参数转换为对应的byte基本类型。
+short   parseShort(String s)    ：将字符串参数转换为对应的short基本类型。
+int     parseInt(String s)      ：将字符串参数转换为对应的int基本类型。
+long    parseLong(String s)     ：将字符串参数转换为对应的long基本类型。
+float   parseFloat(String s)    ：将字符串参数转换为对应的float基本类型。
+double  parseDouble(String s)   ：将字符串参数转换为对应的double基本类型。
+boolean parseBoolean(String s)  ：将字符串参数转换为对应的boolean基本类型。

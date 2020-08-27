@@ -1,0 +1,26 @@
+//请在?地方向上相应代码,以达到输出的内容
+public class Demo1 {
+    public static void main(String[] args) {
+        Body.Heart h=new Body().new Heart();
+        h.jump();
+    }
+}
+class Body {
+    private int num = 10;
+    class Heart {
+        private int num = 20;
+        public void jump() {
+            int num = 30;
+            System.out.println("心脏在跳动 " + Body.this.num); //10
+            System.out.println("心脏在跳动 " + this.num); //20
+            System.out.println("心脏在跳动 " + null); //30
+        }
+    }
+}
+
+sleep和wait方法的区别？
+sleep():必须传入睡眠的时间毫秒值,和毫秒值加纳秒值
+wait() :可以不用指定时间,如果指定时间代表线程不会立马等待,而是指定时间过后再等待
+sleep():在休眠指定时间后自动醒来,并且休眠时间不释放锁
+wait() :等待过程中不会自动醒来,而是调用notify()方法来唤醒,并且调用时里面释放锁
+wait()方法必须是锁对象来调用，而且必须是在同步代码块中执行，否则会出现 IllegalMonitorStateException 异常

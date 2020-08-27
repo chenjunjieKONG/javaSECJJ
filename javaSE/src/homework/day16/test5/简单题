@@ -1,0 +1,15 @@
+给出以下代码，请问该程序的运行结果是什么? 如有问题，请说明原因。
+public class Test07 implements Runnable {
+    public static void main(String[] args) {
+        Thread t = new Thread(new Test07());
+        t.start();
+    }
+    public void run(int num) {
+        for (int i = 0; i < num; i++) {
+            System.out.println(i);
+        }
+    }
+}
+
+运行结果：编译报错
+原因：重写Runnable的run的方法没有参数，所以不能写参数
