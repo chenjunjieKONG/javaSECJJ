@@ -6,10 +6,6 @@ import java.io.FileFilter;
 public class Filter implements FileFilter {
     @Override
     public boolean accept(File file) {
-        if(file.getName().endsWith(".java")){
-            return true;
-        }else {
-            return false;
-        }
+       return file.getName().endsWith(".java");
     }
 }

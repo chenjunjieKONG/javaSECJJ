@@ -2,6 +2,7 @@ package homework.day17.censorship3.test3;
 
 import java.io.File;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Test {
@@ -29,6 +30,8 @@ public class Test {
         for (String s : hashMap.keySet()) {
             System.out.println(s+"的类型的文件有"+hashMap.get(s)+"个");
         }
-
+        for (Map.Entry<String, Integer> entry : hashMap.entrySet()) {
+            System.out.println(entry.getKey()+"的类型的文件有"+entry.getValue()+"个");
+        }
     }
 }

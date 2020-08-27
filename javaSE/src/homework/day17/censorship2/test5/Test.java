@@ -13,11 +13,11 @@ public class Test {
         // 根据文件夹路径创建文件对象
         File file=new File(str);
         // 调用文件对象的listFiles方法获得文件数组
+        // 遍历文件数组，删除每一个文件
         for (File listFile : file.listFiles()) {
             listFile.delete();
         }
         file.delete();
-        // 遍历文件数组，删除每一个文件
         // 最后调用删除方法删除文件夹。
     }
 }
