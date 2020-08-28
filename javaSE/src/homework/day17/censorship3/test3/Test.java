@@ -10,26 +10,26 @@ public class Test {
         Scanner scanner=new Scanner(System.in);
         String str=scanner.nextLine();
         File file=new File(str);
-        show(file,"docx");
-        show(file,"xlsx");
-        show(file,"txt");
+        show(file);
     }
-    public static void show(File file,String str){
-        File[] files = file.listFiles(f -> {
-            return f.getName().endsWith(str) && f.isFile();
-        });
-        int count=1;
+    public static void show(File file){
         HashMap<String,Integer> hashMap=new HashMap<>();
-        for (File file1 : files) {
+        for (File file1 : file.listFiles()) {
             if(file1.isFile()){
-                hashMap.put(str,count++);
+                String[] str=file1.getName().split("\\.");
+                if(!hashMap.containsKey(str[1])){
+                    hashMap.put(str[1],1);
+                }else {
+                    hashMap.put(str[1],hashMap.get(str[1])+1);
+                }
             }else {
-                show(file1,str);
+                show(file1);
             }
         }
         for (String s : hashMap.keySet()) {
             System.out.println(s+"的类型的文件有"+hashMap.get(s)+"个");
         }
+        System.out.println("-----------------");
         for (Map.Entry<String, Integer> entry : hashMap.entrySet()) {
             System.out.println(entry.getKey()+"的类型的文件有"+entry.getValue()+"个");
         }
