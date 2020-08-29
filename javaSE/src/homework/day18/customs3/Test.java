@@ -36,7 +36,6 @@ public class Test {
     }
 
     public static int sizer(File file) throws IOException {
-        //文件计数器
         File[] files = filtration(file);
         for (File file1 : files) {
             if (file1.isFile()) {
