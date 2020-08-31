@@ -19,7 +19,7 @@ public class Thien {
 // 创建属性集合
             Properties pro = new Properties();
 // 从文件中加载内容到集合中
-            pro.load(Thien.class.getResourceAsStream("/stu.properties"));
+            pro.load(Thien.class.getResourceAsStream("/homework/day21/test8/test.properties"));
 // 从集合中获得类名
             String className = pro.getProperty("class");
 // 通过反射获得Class对象

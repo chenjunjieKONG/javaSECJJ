@@ -14,7 +14,7 @@ public class Test {
         int count = 0;
         try {
             //创建字节输入流，用于读取
-            inputStream = new FileInputStream("c:/test.txt");
+            inputStream = new FileInputStream("c:/test1.txt");
             count = 0;
             int len;
             while ((len = inputStream.read()) != -1) {

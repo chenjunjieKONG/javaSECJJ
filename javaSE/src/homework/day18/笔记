@@ -1,0 +1,19 @@
+OutputStream 抽象类是表示字节输出流的所有类的超类，将指定的节信息写出到目的地。它定义了字 节输出流的基本共性功能方法。
+close() ：关闭此输出流并释放与此流相关联的任何系统资源。
+ flush() ：刷新此输出流并强制任何缓冲的输出字节被写出。
+ write(byte[] b) ：将 b.length字节从指定的字节数组写入此输出流。
+write(byte[] b, int off, int len) ：从指定的字节数组写入 len字节，偏移量 off开始输 出到此输出流。
+write(int b) ：将指定的字节输出流。
+
+close方法，当完成流的操作时，必须调用此方法，释放系统资源。
+
+FileOutputStream(File file) ：创建文件输出流以写入由指定的 File对象表示的文件。
+FileOutputStream(String name) ： 创建文件输出流以指定的名称写文件。
+
+java.io.InputStream 抽象类是表示字节输入流的所有类的超类，可以读取字信息到内存中。它定义了字节输入 流的基本共性功能方法。
+close() ：关闭此输入流并释放与此流相关联的任何系统资源。
+read() ： 从输入流读取数据的下一个字节。
+read(byte[] b) ： 从输入流中读取一些字节数，并将它们存储到字节数组中 。
+
+FileInputStream(File file) ： 通过打开与实际文件的连接来创建一个 FileInputStream ，该文件由文件系 统中的 File对象 file命名。
+FileInputStream(String name) ： 通过打开与实际文件的连接来创建一个 FileInputStream ，该文件由文件 系统中的路径名 name命名。

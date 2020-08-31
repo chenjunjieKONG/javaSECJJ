@@ -7,13 +7,13 @@ import java.util.Scanner;
 public class Test {
     public static void main(String[] args) throws IOException {
         //键盘输入语句
-        Scanner scanner=new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         //集合
-        ArrayList<String> list=new ArrayList<>();
+        ArrayList<String> list = new ArrayList<>();
         //高效字符输出流
-        BufferedWriter writer=new BufferedWriter(new FileWriter("c:/data.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("c:/data.txt"));
         //高效字符输入流
-        BufferedReader reader=new BufferedReader(new FileReader("c:/data.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("c:/data.txt"));
         while (list.size() < 3) {
             String s = scanner.next();
             list.add(s);
@@ -23,7 +23,7 @@ public class Test {
         }
         String s = scanner.next();
         String len;
-        while ((len=reader.readLine())!=null){
+        while ((len = reader.readLine()) != null) {
             if (s.equals(len)) {//判断是否存在
                 System.out.println("验证成功");
                 break;
