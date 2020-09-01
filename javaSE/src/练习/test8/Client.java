@@ -1,6 +1,8 @@
-package homework.day20.test8;
+package 练习.test8;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Scanner;
 

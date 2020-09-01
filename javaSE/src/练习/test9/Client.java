@@ -1,25 +1,23 @@
-package homework.day20.test9;
+package 练习.test9;
 
-import java.io.*;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.Socket;
 
 public class Client {
     public static void main(String[] args) {
         System.out.println("客户端 发送数据");
         try {
-            //创建客户端
             Socket socket=new Socket("localhost",8888);
-            //创建输入流，用于读取服务器的文件
             BufferedInputStream inputStream=new BufferedInputStream(socket.getInputStream());
-            //创建输出流，用于写入文件
             BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream("D:/ccc.png"));
-            //读取文件
-            byte[]bytes=new byte[1024];
+            byte[]bytes=new byte[1028];
             int len;
             while ((len=inputStream.read(bytes))!=-1){
-                outputStream.write(bytes,0,len);//写入文件
+                outputStream.write(bytes,0,len);
             }
-            //关闭资源
             outputStream.close();
             inputStream.close();
             socket.close();

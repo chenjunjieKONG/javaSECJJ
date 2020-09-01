@@ -15,13 +15,9 @@ public class Reception {
         ds.receive(dp);
         System.out.println("接收后");
         //解析数据
-        //InetAddress getAddress()
-        InetAddress address = dp.getAddress();
-        //byte[] getData
         byte[] data = dp.getData();
         int length = dp.getLength();
         //输出数据
-        System.out.println("sender ----"+address.getHostAddress());
         System.out.println(new String(data,0,length));
     }
 }

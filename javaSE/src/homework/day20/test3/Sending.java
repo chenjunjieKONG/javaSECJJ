@@ -11,7 +11,7 @@ public class Sending {
         DatagramSocket ds = new DatagramSocket();
         //创建数据并打包  DatagramPacket表示数据包
         //数据 byte[] 设备地址ip 进程的地址 ：端口号
-        String s = "hello udp,i m coming";
+        String s = "Hello UDP";
         byte[] bys = s.getBytes();
         int length = bys.length;
         InetAddress address = InetAddress.getByName("localhost");
