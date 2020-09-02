@@ -19,8 +19,8 @@ public class T {
     @Test
     public void test1() {//反射所有public 修饰的构造方法
         System.out.println("获取所有public 修饰的构造方法");
-        Constructor<?>[] constructors = studentClass.getConstructors();
-        for (Constructor<?> constructor : constructors) {
+        Constructor [] constructors = studentClass.getConstructors();
+        for (Constructor constructor : constructors) {
             System.out.println(constructor);
         }
         System.out.println("--------------");
@@ -29,8 +29,8 @@ public class T {
     @Test
     public void test2() {//反射所有的构造方法
         System.out.println("获取所有修饰的构造方法");
-        Constructor<?>[] constructors = studentClass.getDeclaredConstructors();
-        for (Constructor<?> constructor : constructors) {
+        Constructor[] constructors = studentClass.getDeclaredConstructors();
+        for (Constructor constructor : constructors) {
             System.out.println(constructor);
         }
     }

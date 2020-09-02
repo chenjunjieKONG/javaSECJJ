@@ -38,7 +38,6 @@ public class Client {
                 while ((len=bis.read(bytes))!=-1){
                     System.out.println(new String(bytes,0,len));
                 }
-
             }
             //关闭资源
             bis.close();
