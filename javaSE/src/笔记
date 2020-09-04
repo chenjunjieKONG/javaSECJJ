@@ -1,0 +1,176 @@
+SQL(Structured Query Language) 是结构化查询语言的缩写，是一种语言。
+
+SQL 语言可以用来在关系数据库上查询数据 , 操纵数据 , 定义数据 , 控制数据 ,
+
+使软件开发人员、数据库管理员都可以通过 SQL
+
+语言对数据库执行特定的操作。大多数数据库都使用相同或者相似的语言来操作和维护数据库。
+
+SQL可分为:
+
+- 数据定义语言（DDL） : Data Definition Language
+    用于建立、修改、删除数据库对象，包括创建语句(CREATE)、修改语句(alter)、删除语句(DROP)。
+    使用CREATE TABLE创建表，使用ALTER
+    TABLE修改表，使用DROPTABLE删除表等动作。这类语言不需要事务的参与，自动提交。
+
+- 数据操纵语言（DML） : Data Manipulation Language
+    用于改变数据库数据，包括INSERT、UPDATE、DELETE三条语句。
+    其中，INSERT语句用于将数据插入到数据库中，UPDATE语句用于更新数据库中已存在的数据，DELETE用于删除数据库中已存在的数据。
+    DML语言和事务是相关的，执行完DML操作后必须经过事务控制语句提交后才真正的将改变应用到数据库中。
+
+- 事务控制语言（TCL）：Transaction Control Language)
+    用来维护数据一致性的语句，包括提交(COMMIT)、回滚(ROLLBACK)、保存点(SAVEPOINT)三条语句，
+    其中COMMIT用来确认已经进行的数据库改变，
+    ROLLBACK语句用来取消已经进行的数据库改变，当执行DML操作后(也就是上面说的增加、修改、删除等动作)，
+    可以使用COMMIT语句来确认这种改变，或者使用ROLLBACK取消这种改变。SAVEPOINT语句用来设置保存点，
+    使当前的事务可以回退到指定的保存点，便于取消部分改变。
+
+- 数据查询语言（DQL）：Data Query Language
+    用来查询所需要的数据。在工作中使用最多，语法灵活复杂。
+
+- 数据控制语言（DCL） : Data Control Language
+    用于执行权限的授予和收回操作、创建用户等，包括授予(GRANT)语句，收回(REVOKE)语句，CREATE
+    USER语句，其中GRANT用于给用户或角色授予权限，
+    REVOKE用于收回用户或角色已有的权限。DCL语句也不需要事务的参与，
+    是自动提交的。数据控制语言一般由数据库管理员使用。
+
+MySQL常见的数据类型:数值型、浮点型、日期/时间和字符串(字符)类型。
+
+SQL语句基础语法规则：
+    1.sql 语句是用分号结尾的；
+    2.sql 语句的大小写不敏感；
+    3.SQL 可以写在一行或者多行；
+    4.关键字不能被缩写也不能分行；
+    5.使用缩进提高语句的可读性；
+
+sql语言：
+    登录命令：mysql -u root -p
+    显示并切换数据库：
+        show databases;--显示所有数据库
+        use 数据库名; --切换数据库
+    新建数据库：create database 数据库名;
+    create建表语句：
+        create table 表名 (
+        列名1 数据类型,
+        列名2 数据类型，default 'M', --性别，默认值是M//添加默认值
+        列名3 数据类型， not null//不能为空
+        ……
+        );
+        规则：
+            1.列与列之间用","隔开
+            2.最后一个列不能加","
+            3.建表语句中表名不能重复(在同一个数据库下不能有重名的表)，在同一个表中别名不能重复
+    显示所有表：show tables
+    DESC语句：
+        desc 是查看表的数据结构，语法是： desc 表名;
+DML语言：
+    修改表：
+        修改表名：alter table 表名 rename 新表名；
+
+        增加列：ALTER TABLE 表名 ADD (列名 据类型 DEFAULT 表达式)
+            注意，列只能增加在最后，不能插入到现有的列中。
+
+        删除列：ALTER TABLE 表名 DROP (列名);
+
+        修改列：ALTER TABLE 表名 MODIFY 列名 数据类型 DEFAULT 表达式
+
+        修改表的列属性名：alter table 表名 change 原列名 新列名  类型；
+
+        修改表的类类型：alter table 表名 modify 列名 类型 ；
+
+        删除表的某一列：alter table 表名 drop 列名；
+
+        添加某一列：alter table 表名 add  列名 类型；
+
+        修改表名：alter table 表名 rename 新表名；
+
+    INSERT语句：INSERT语句用来给数据表增加记录，每次增加一条记录。
+        语法如下：INSERT INTO 表名[(列名1[, 列名2…])] VALUES(值1[, 值2…]);
+        注意：
+            1.如果不写列名，是必须插入所有列的记录，缺少一列值就会报错
+            INSERT INTO 表名 VALUES(值1[, 值2…]);
+            2.如果写了列名，这种插入很灵活，插入列数不固定，但是插入值的顺序必须与列对应
+            3.所有的DML操作，都需要再执行事务提交语句commit，才算真正确认了此操作。
+
+    UPDATE语句：
+        UPDATE语句用来更新表中的记录，
+            语法如下：UPDATE 表名 SET 列名= 列值, 列名= 列值…;
+                其中WHERE子句是可选的，但是如果没有WHERE子句，则全表的数据都会被更新，一定要注意
+
+    DELETE语句：
+        DELETE语句用来删除表中的记录，
+            语法如下：DELETE [FROM] 表名 [WHERE 条件];
+                和UPDATE语句一样，WHERE子句是可选的，但是如果没有WHERE子句，则全表的数据都会被删除，务必确认后再予以删除。
+        注意drop是删除整张表，delete是删除表中的数据
+
+DQL语言：
+    Select语句基本语法：
+        查询语句语法select [distinct] {*,列名 [列别名],...} from 表名
+        select子句用于指定要查询的列，如果要查询所有的列，可以在select后面使用*号，如果只查特定的列，
+        可以在select后面指定列名，列名之间用逗号隔开
+
+    From子句：用于指定从哪张表中查询
+
+    Where子句:在SELECT语句中，可以在WHERE子句中使用比较操作符限制查询结果，是可选的
+
+常用函数之字符串操作：
+    LENGTH:长度
+
+    CONCAT：字符串连接函数；
+
+    UPPER(char)用于将字符转换为大写形式
+
+    LOWER(char)用于将字符转换为小写形式
+
+    TRIM：去除前后空格
+
+    PAD意即补丁，LPAD和RPAD两个函数都叫做补位函数，LPAD表示LEFT
+    PAD，在左边打补丁，RPAD表示RIGHT PAD，在右边打补丁。
+
+    SUBSTR：SUBSTR(char, m, n)
+        用于返回char中从m位开始取n个字符的子串，字符串的首位计数从1开始。参数作用：
+        如果m = 0，则从首字符开始，如果m取负数，则从尾部开始
+        如果没有设置n，或者n的长度超过了char的长度，则取到字符串末尾为止
+
+常用函数之数值操作
+    数值操作函数：数值函数指参数是数值类型的函数。
+        ROUND：
+        ROUND(n, m) 用于将参数n按照m的数字要求四舍五入。
+        参数中的n可以是任何数字，指要被处理的数字
+            m必须是整数
+            m取正数则四舍五入到小数点后第m位
+            m取负数，则四舍五入到小数点前m位
+            m取0值则四舍五入到整数位
+            m缺省，默认值是0
+
+        ABS：ABS(n)的功能是处理数字n得到正整数
+
+        MOD：MOD(m, n)是取模函数，返回m除以n后的余数，如果n为0则直接返回m。
+
+        CEIL：CEIL(n)就是取大于或等于n的最小整数值
+        FLOOR：FLOOR(n)就是取小于或等于n的最大整数值
+
+常用函数之日期处理：
+    获得当前日期时间 函数：select now();select sysdate();
+        sysdate() 日期时间函数跟 now() 类似，
+        不同之处在于：
+            now() 在执行开始时值就得到了
+            sysdate() 在函数执行时动态得到值。
+
+    获得当前时间戳函数:select current_timestamp, current_timestamp();
+
+    日期转换函数:
+        select date_format('2008-08-08 22:23:01', '%Y-%m-%d %H:%i:%s');
+        select date_format(now(), '%Y-%m-%d %H:%i:%s');
+    时间转换函数:
+        select str_to_date('08/09/2008', '%m/%d/%Y'); -- 2008-08-09
+        select str_to_date('08/09/08' , '%m/%d/%y'); -- 2008-08-09
+        select str_to_date('08.09.2008', '%m.%d.%Y'); -- 2008-08-09
+        select str_to_date('08:09:30', '%H:%i:%s'); -- 08:09:30
+        select str_to_date('08.09.2008 08:09:30', '%m.%d.%Y %H:%i:%s'); -- 2008-08-09 08:09:30
+
+
+    日期、时间相减函数:MySQL datediff(date1,date2)：两个日期相减 date1 - date2，返回天数。
+
+
+alter和alert的区别

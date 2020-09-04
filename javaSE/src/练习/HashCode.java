@@ -1,6 +1,6 @@
-package homework.day21.test1;
+package 练习;
 
-public class Test {
+public class HashCode {
     public static void main(String[] args) {
 
     }

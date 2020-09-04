@@ -18,4 +18,111 @@
 反射的基本概念
     反射是一种机制，利用该机制可以在程序运行过程中对类进行解剖并操作类中的方法，属性，构造方法等成员。
 
+Class类中与Constructor相关方法
+1. Constructor getConstructor(Class... parameterTypes)
+    根据参数类型获取构造方法对象，只能获得public修饰的构造方法。
+	如果不存在对应的构造方法，则会抛出 java.lang.NoSuchMethodException 异常。
+2. Constructor getDeclaredConstructor(Class... parameterTypes)
+  	根据参数类型获取构造方法对象，能获取所有的构造方法，包括private修饰的构造方法。
+  	如果不存在对应的构造方法，则会抛出 java.lang.NoSuchMethodException 异常。
+3. Constructor[] getConstructors()
+   	获取所有的public修饰的构造方法
+4. Constructor[] getDeclaredConstructors()
+   	获取所有构造方法，包括public、privat、默认、protected修饰的
 
+Class类中与Method相关方法
+1. Method getMethod("方法名", 方法的参数类型... 类型)
+	根据方法名和参数类型获得一个方法对象，只能是获取public修饰的
+
+2. Method getDeclaredMethod("方法名", 方法的参数类型... 类型)
+  	根据方法名和参数类型获得一个方法对象，包括private修饰的
+
+3. Method[] getMethods()
+  	获取所有的public修饰的成员方法，包括父类中。
+
+4. Method[] getDeclaredMethods()
+  	获取当前类中所有的方法，包含私有的，不包括父类中。
+
+Class类中与Filed相关方法
+1. Field getDeclaredField(String name)
+   根据属性名获得属性对象，包括private修饰的
+
+2. Field getField(String name)
+   根据属性名获得属性对象，只能获取public修饰的
+
+3. Field[]	getFields()
+    获取所有的public修饰的属性对象，返回数组。
+
+4. Field[]	getDeclaredFields()
+  	获取所有的属性对象，包括private修饰的，返回数组。
+
+常见注解
+1. @author：用来标识作者名，eclipse开发工具默认的是系统用户名。
+2. @version：用于标识对象的版本号，适用范围：文件、类、方法。
+3. @Override ：用来修饰方法声明，告诉编译器该方法是重写父类中的方法，如果父类不存在该方法，则编译失败。
+
+自定义注解
+格式：
+public @interface 注解名{
+
+}
+注解的属性
+
+1. 属性的作用
+    可以让用户在使用注解时传递参数，让注解的功能更加强大。
+2. 属性的格式
+    格式1：数据类型 属性名();
+    格式2：数据类型 属性名() default 默认值;
+
+属性适用的数据类型
+
+ 八种基本数据类型（int,float,boolean,byte,double,char,long,short)
+ String类型，Class类型，枚举类型，注解类型
+ 以上所有类型的一维数组
+
+使用注意事项
+如果属性有默认值，则使用注解的时候，这个属性可以不用赋值。
+如果属性没有默认值，那么在使用注解时一定要给属性赋值。
+
+当注解中只有一个属性且名称是value，在使用注解时给value属性赋值可以直接给属性值，无论value是单值元素还是数组类型。
+如果注解中除了value属性还有其他属性，且至少有一个属性没有默认值，则在使用注解给属性赋值时，value属性名不能省略
+
+元注解的概述
+Java API提供的注解
+专门用来定义注解的注解。
+任何Java官方提供的非元注解的定义中都使用到了元注解。
+
+常用元注解
+@Target
+@Retention
+
+元注解之@Target
+作用：指明此注解用在哪个位置，如果不写默认是任何地方都可以使用。
+可选的参数值在枚举类ElemenetType中包括：
+ TYPE： 用在类,接口上
+ FIELD：用在成员变量上
+ METHOD： 用在方法上
+ PARAMETER：用在参数上
+ CONSTRUCTOR：用在构造方法上
+ LOCAL_VARIABLE：用在局部变量上
+ ANNOTATION_TYPE：用在注解上
+
+元注解之@Retention
+
+作用：定义该注解的生命周期(有效范围)。
+可选的参数值在枚举类型RetentionPolicy中包括
+SOURCE：注解只存在于Java源代码中，编译生成的字节码文件中就不存在了。
+CLASS：注解存在于Java源代码、编译以后的字节码文件中，运行的时候内存中没有，默认值。
+RUNTIME：注解存在于Java源代码中、编译以后的字节码文件中、运行时内存中，程序可以通过反射获取该注解。
+
+注解解析
+通过Java技术获取注解数据的过程则称为注解解析。
+
+与注解解析相关的接口
+
+Anontation：所有注解类型的公共接口，类似所有类的父类是Object。
+AnnotatedElement：定义了与注解解析相关的方法，常用方法以下四个：
+boolean isAnnotationPresent(Class annotationClass); 判断当前对象是否有指定的注解，有则返回true，否则返回false。
+T getAnnotation(Class<T> annotationClass);  获得当前对象上指定的注解对象。
+Annotation[] getAnnotations(); 获得当前对象及其从父类上继承的所有的注解对象。
+Annotation[] getDeclaredAnnotations();获得当前对象上所有的注解对象，不包括父类的。

@@ -6,13 +6,17 @@ import java.util.ArrayList;
 
 public class Test1 {
     public static void main(String[] args) {
+        //定义一个ArrayList集合
         ArrayList<Integer> arrayList=new ArrayList<>();
         try {
-            Method method=arrayList.getClass().getMethod("add", Object.class);
-            method.invoke(arrayList,1);
-            method.invoke(arrayList,2);
-            method.invoke(arrayList,"华天");
-            method.invoke(arrayList,4);
+            //获取ArrayList的add方法
+            Method add=arrayList.getClass().getMethod("add", Object.class);
+            //给集合添加数据
+            add.invoke(arrayList,1);
+            add.invoke(arrayList,2);
+            //在集合中添加String类型的内容
+            add.invoke(arrayList,"华天");
+            add.invoke(arrayList,4);
         } catch (Exception e) {
             e.printStackTrace();
         }

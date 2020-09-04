@@ -9,6 +9,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD, ElementType.TYPE})
 public @interface Book {
     String value(); //书名
-    double price=100; //价格，默认值为100
+    double price() default 100; //价格，默认值为100
     String[] authors(); //多位作者
 }

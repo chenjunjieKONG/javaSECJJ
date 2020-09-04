@@ -1,13 +1,15 @@
 package homework.day21.test1;
 
 import org.junit.AfterClass;
-import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
 
 public class Calculator {
-    @BeforeClass
-    public static void init() {
-        Calculator calculator=new Calculator();
+    @Before
+    public void init() throws IllegalAccessException, InstantiationException {
+        Class calculator=Calculator.class;
+        Object o = calculator.newInstance();
+        System.out.println(o);
         System.out.println("创建对象成功");
     }
     @Test
@@ -28,7 +30,8 @@ public class Calculator {
     }
     @AfterClass
     public static void ting() {
-        Calculator calculator=null;
+        Class calculator=null;
         System.out.println("对象赋值为空");
+        System.out.println(calculator);
     }
 }

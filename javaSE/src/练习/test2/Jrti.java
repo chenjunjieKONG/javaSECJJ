@@ -1,4 +1,4 @@
-package homework.day21;
+package 练习.test2;
 
 import org.junit.*;
 
